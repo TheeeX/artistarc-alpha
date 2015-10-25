@@ -1,3 +1,10 @@
+/*-----------------------------------------*/
+
+      $(document).ready(function() {
+      Materialize.toast('<span>5 Notifications</span><a href="#">&nbsp; READ</a>', 4000, 'rounded') ;
+      });
+      
+
 $(document).ready(function() {
     $('#form_sign_up').submit(function(){
          var data = $(this).serialize();
@@ -65,11 +72,27 @@ $(document).ready(function() {
 /*-------------Create Troop---------------*/
 
 $(document).ready(function() {
-    $('#form_create_troop').submit(function(){
+    $('#form_create_troupe').submit(function(){
          var data = $(this).serialize();
          alert (data);
         $.ajax({
-	        url  : 'search/artist.php',
+	        url  : 'assets/php/_createtroupe.php',
+	        type : 'POST',
+	        data:data,
+	        success: function() {
+	                //display message back to user here
+	                //$('#result-f').html(data);
+			alert ('sucess!');
+		    }
+	    });
+	      return false;
+          });
+    
+    $('#form_create_troupe').submit(function(){
+         var data = $(this).serialize();
+         alert (data);
+        $.ajax({
+	        url  : 'assets/php/_createtroupe.php',
 	        type : 'POST',
 	        data:data,
 	        success: function() {
@@ -82,11 +105,57 @@ $(document).ready(function() {
           });
 });
 
+
 /*----------- / Create Troop -------------*/
 
+/*------------- Ad Comment ---------------*/
+
+    $('#comment-mar').click(function(){
+         $('#no-comment').toggle();
+});
+
+    $('#form_add_comment').submit(function(){
+         var data = $(this).serialize();
+         alert (data);
+        $.ajax({
+	        url  : 'assets/php/_addcomment.php',
+	        type : 'POST',
+	        data:data,
+	        success: function() {
+	                //display message back to user here
+	                //$('#result-f').html(data);
+			alert ('sucess!');
+		    }
+	    });
+	      return false;
+          });
+
+/*------------/ Ad Comment ---------------*/
+$(window).scroll(function() {
+    if ($(document).scrollTop() < 50) {
+        $('.navbar-top').removeClass('artist-header_shrink');
+    }
+});
+
+
+$('#body').bind('mousewheel DOMMouseScroll', function (event) {           
+     if (event.originalEvent.wheelDelta/ 120 > 0) {
+          //up
+	  // alert('up');
+// 	  $('.navbar-top').removeClass('artist-header_shrink');
+     }
+     else {
+          //down
+	  // alert('down');
+	     if ($(document).scrollTop() > 50) {
+	         $('.navbar-top').addClass('artist-header_shrink');
+	     }
+     }
+});
 
 $(document).ready(function() {
- 	$('#nav-main').addClass('wat');
-	$('#faker').addClass('expand');
+ 	if ($(document).scrollTop() > 50) {
+	   $('.navbar-top').addClass('artist-header_shrink');
+	}
 });
     
