@@ -154,7 +154,7 @@ $('#body').bind('mousewheel DOMMouseScroll', function (event) {
 });
 
 $(document).ready(function() {
- 	if ($(document).scrollTop() > 50) {
+ 	if ($(document).scrollTop() > 30) {
 	   $('.navbar-top').addClass('artist-header_shrink');
 	}
 });
